@@ -3,6 +3,7 @@
     "start": "servor --reload"
   },
   "dependencies": {
+    "firebase-tools": "^13.29.1",
     "servor": "^4.0.2"
   }
 }
