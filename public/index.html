@@ -30,7 +30,7 @@
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div class="container my-5">
         <h1 class="text-center mb-4">Shifts to CSV</h1>
 
@@ -68,6 +68,13 @@
             </table>
             <button id="download-btn" class="btn btn-success">Download Schedule</button>
         </div>
+    </div>
+
+
+    <div class="container mt-auto">
+        <footer class="py-3 my-4">
+            <p class="text-center text-body-secondary">&copy; 2024<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Mattia Rigo.</p>
+        </footer>
     </div>
 
     <script>
@@ -135,6 +142,19 @@
                 a.click();
                 URL.revokeObjectURL(url);
             };
+        });
+
+        const input = document.getElementById('shift-input');
+
+        input.addEventListener('input', (event) => {
+            const value = input.value;
+            const updatedValue = value.replace(/ /g, '\t');
+
+            if (updatedValue !== value) {
+                input.value = updatedValue;
+            }
+
+            console.log("prova")
         });
     </script>
 </body>
