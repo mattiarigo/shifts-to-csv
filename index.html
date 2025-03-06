@@ -40,12 +40,12 @@
                 <form id="shift-form">
                     <div class="mb-3">
                         <label for="start-date" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" id="start-date" required value="2017-06-01">
+                        <input type="date" class="form-control" id="start-date" required>
                         <small class="form-text text-muted">The start date of the schedule.</small>
                     </div>
                     <div class="mb-3">
                         <label for="shift-input" class="form-label">Shift Sequence (tab-separated)</label>
-                        <textarea type="textarea" class="form-control" id="shift-input" placeholder="morning	afternoon	night" required>morning	afternoon	night</textarea>
+                        <textarea type="textarea" class="form-control" id="shift-input" placeholder="morning	afternoon	night" required></textarea>
                         <small class="form-text text-muted">Available shifts: morning, afternoon, night, evening, normal, off, vacation, sickleave</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Generate Schedule</button>
