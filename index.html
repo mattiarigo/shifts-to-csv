@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
     <style>
         .morning-row { background-color: #ffffff; }
         .afternoon-row { background-color: #ffd966; }
-        .night-row { background-color: #0070c0; }
+        .night-row { background-color: #0070c0; color: white;}
         .evening-row { background-color: #00b0f0; }
         .normal-row { background-color: #00b050; }
 
@@ -29,20 +30,23 @@
     </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-body-tertiary">
     <div class="container my-5">
         <h1 class="text-center mb-4">Shifts to CSV</h1>
+        <p class="text-center">This tool generates a schedule in CSV format based on a sequence of shifts.</p>
 
-        <div class="card mb-4">
+        <div id="input-form" class="card mb-4">
             <div class="card-body">
                 <form id="shift-form">
                     <div class="mb-3">
                         <label for="start-date" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" id="start-date" required>
+                        <input type="date" class="form-control" id="start-date" required value="2017-06-01">
+                        <small class="form-text text-muted">The start date of the schedule.</small>
                     </div>
                     <div class="mb-3">
                         <label for="shift-input" class="form-label">Shift Sequence (tab-separated)</label>
-                        <input type="text" class="form-control" id="shift-input" placeholder="morning	afternoon	night" required>
+                        <textarea type="textarea" class="form-control" id="shift-input" placeholder="morning	afternoon	night" required>morning	afternoon	night</textarea>
+                        <small class="form-text text-muted">Available shifts: morning, afternoon, night, evening, normal, off, vacation, sickleave</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Generate Schedule</button>
                 </form>
@@ -51,6 +55,10 @@
 
         <div id="output" class="d-none">
             <h2 class="mb-3">Generated Schedule</h2>
+            <a href="#" id="download-btn">← Generate new schedule</a>
+            <div class="alert alert-info mt-3" role="alert">
+                <strong>Tip:</strong> Click the "Download Schedule" button to download the schedule as a CSV file.
+            </div>
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
@@ -67,6 +75,7 @@
                 </thead>
                 <tbody id="schedule-body"></tbody>
             </table>
+            <!-- <button id="download-btn" class="btn btn-outline-danger">Clear Schedule</button> -->
             <button id="download-btn" class="btn btn-success">Download Schedule</button>
         </div>
     </div>
