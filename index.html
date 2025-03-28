@@ -31,6 +31,9 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-body-tertiary">
+    <div class="alert alert-primary m-4 text-center" role="alert">
+        A new experience is on the way!
+      </div>
     <div class="container my-5">
         <h1 class="text-center mb-4">Shifts to CSV</h1>
         <p class="text-center">This tool generates a schedule in CSV format based on a sequence of shifts.</p>
@@ -46,7 +49,6 @@
                     <div class="mb-3">
                         <label for="shift-input" class="form-label">Shift Sequence (tab-separated)</label>
                         <textarea type="textarea" class="form-control" id="shift-input" placeholder="morning	afternoon	night" required></textarea>
-                        <small class="form-text text-muted">Available shifts: morning, afternoon, night, evening, normal, off, vacation, sickleave</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Generate Schedule</button>
                 </form>
