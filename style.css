@@ -245,6 +245,8 @@ textarea.form-control {
 .vacation-row { background-color: #f9f0ff; border-left: 5px solid #722ed1; }
 .sickleave-row { background-color: #fff1f0; border-left: 5px solid #f5222d; }
 
+.oncall-row { background-color: #fafafa; border-left: 5px solid ; }
+
 /* Alert styles */
 .alert {
     border-radius: var(--border-radius);
