@@ -138,15 +138,17 @@
                         return;
                     }
 
-                    const endDate = new Date(currentDate);
-                    endDate.setDate(endDate.getDate() + (shift.days - 1));
+                    // Create endDate using UTC to avoid daylight saving time issues
+                    const endDate = new Date(Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate() + (shift.days - 1)));
 
                     // Format dates
                     const dateOptions = { weekday: 'short', day: 'numeric', month: 'short' };
-                    const formattedDate = currentDate.toLocaleDateString('en-US', dateOptions);
+                    const formattedDate = currentDate.toLocaleDateString('it-IT', dateOptions);
                     const startDateStr = currentDate.toISOString().split('T')[0];
                     const endDateStr = endDate.toISOString().split('T')[0];
                     
+                    console.log(`Current Date: ${currentDate.toLocaleDateString('it-IT')}, End Date: ${endDate.toLocaleDateString('it-IT')}`);
+
                     // Get day name
                     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
                     const dayIndex = currentDate.getDay();
@@ -161,29 +163,31 @@
                         endTime = "16:30";
                     }
 
+                    
                     // Create table row
                     const row = document.createElement('tr');
                     row.classList.add(shift.class);
                     row.innerHTML = `
-                        <td>${dayName}</td>
-                        <td>${formattedDate}</td>
-                        <td>
-                            <i class="fas fa-${shift.icon} me-2"></i>
-                            ${shift.subject}
+                    <td>${dayName}</td>
+                    <td>${formattedDate}</td>
+                    <td>
+                        <i class="fas fa-${shift.icon} me-2"></i>
+                        ${shift.subject}
                         </td>
                         <td>${shift.start_time}</td>
                         <td>${endTime}</td>
                         <td>${shift.location}</td>
                     `;
+                    
                     scheduleBody.appendChild(row);
-
+                        
                     // Add row data for CSV
                     csvData.push(`"${shift.subject}","${startDateStr}","${shift.start_time}","${endDateStr}","${endTime}","${shift.all_day_event}","${shift.location}"`);
-
                     
-                    // Move to the next day
-                    currentDate = new Date(currentDate);
-                    currentDate.setDate(currentDate.getDate() + 1);
+                    console.log(`Processing shift: ${shiftKey} on ${startDateStr} (${dayName})`);
+                    
+                    // Move to the next day using UTC to avoid daylight saving time issues
+                    currentDate = new Date(Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate() + 1));
                 });
 
                 // Show the output with animation
@@ -231,6 +235,7 @@
                     this.selectionStart = this.selectionEnd = start + 1;
                 }
             });
+
             
         </script>
     </body>
